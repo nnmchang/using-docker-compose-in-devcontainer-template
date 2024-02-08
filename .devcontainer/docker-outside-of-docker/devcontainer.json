@@ -1,0 +1,20 @@
+{
+    "name": "devcontainer-template",
+    // https://hub.docker.com/_/microsoft-vscode-devcontainers から選択
+    "image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04",
+    "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+    "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/${localWorkspaceFolderBasename},type=bind,consistency=cached",
+    // ホストのDockerから見たワークスペースのパスを環境変数として保持する
+    "remoteEnv": {
+        "LOCAL_WORKSPACES_FOLDER": "${localWorkspaceFolder}"
+    },
+    "features": {
+        // https://containers.dev/features から選択して追加できます
+        // ホストのDockerを利用するための設定
+        "ghcr.io/devcontainers/features/docker-outside-of-docker:1":{},
+        // Jetbrains Gateway Codespaces用
+        "ghcr.io/devcontainers/features/sshd:1": {
+            "version": "latest"
+        }
+    }
+}
